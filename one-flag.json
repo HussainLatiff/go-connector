@@ -1,0 +1,437 @@
+{
+    "engineConfig": {
+        "defaultFlushInterval": "500",
+        "datasourceConfigurations": [
+            {
+                "kind": "GRAPHQL",
+                "rootNodes": [
+                    {
+                        "typeName": "Query",
+                        "fieldNames": [
+                            "FederateBase"
+                        ]
+                    }
+                ],
+                "childNodes": [
+                    {
+                        "typeName": "FederateBaseResponse",
+                        "fieldNames": [
+                            "id"
+                        ]
+                    }
+                ],
+                "overrideFieldPathFromAlias": true,
+                "customGraphql": {
+                    "fetch": {
+                        "url": {
+                            "staticVariableContent": "http://localhost:3002/graphql"
+                        },
+                        "method": "POST",
+                        "body": {},
+                        "baseUrl": {},
+                        "path": {}
+                    },
+                    "subscription": {
+                        "enabled": true,
+                        "url": {
+                            "staticVariableContent": "http://localhost:3002/graphql"
+                        },
+                        "protocol": "GRAPHQL_SUBSCRIPTION_PROTOCOL_WS",
+                        "websocketSubprotocol": "GRAPHQL_WEBSOCKET_SUBPROTOCOL_AUTO"
+                    },
+                    "federation": {
+                        "enabled": true,
+                        "serviceSdl": "\nschema {\n  query: Query\n}\n\n# Root Query type\ntype Query {\n  FederateBase: FederateBaseResponse!\n}\n\n# Type for the response that contains only an ID\ntype FederateBaseResponse {\n  id: ID!\n}\n"
+                    },
+                    "upstreamSchema": {
+                        "key": "9cabd78fd86a5da0cd7db5493e98fdaa16a277ae"
+                    }
+                },
+                "requestTimeoutSeconds": "10",
+                "id": "0413bfee-ffd6-4d53-a23a-344109cbb11a"
+            }
+        ],
+        "graphqlSchema": "schema {\n  query: Query\n}\n\ndirective @extends on INTERFACE | OBJECT\n\ndirective @external on FIELD_DEFINITION | OBJECT\n\ndirective @key(fields: openfed__FieldSet!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT\n\ndirective @provides(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @requires(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION\n\ntype FederateBaseResponse {\n  id: ID!\n}\n\ntype Query {\n  FederateBase: FederateBaseResponse!\n}\n\nscalar openfed__FieldSet",
+
+        "stringStorage": {
+            "9cabd78fd86a5da0cd7db5493e98fdaa16a277ae": "schema {\n  query: Query\n}\n\ndirective @extends on INTERFACE | OBJECT\n\ndirective @external on FIELD_DEFINITION | OBJECT\n\ndirective @key(fields: openfed__FieldSet!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT\n\ndirective @provides(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @requires(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION\n\ntype FederateBaseResponse {\n  id: ID!\n}\n\ntype Query {\n  FederateBase: FederateBaseResponse!\n}\n\nscalar openfed__FieldSet"
+        }
+    },
+    "version": "b5de725b-9def-4ea4-9f17-e845448c895d",
+    "subgraphs": [
+        {
+            "id": "0413bfee-ffd6-4d53-a23a-344109cbb11a",
+            "name": "base1",
+            "routingUrl": "http://localhost:3002/graphql"
+        }
+    ],
+    "featureFlagConfigs": {
+        "configByFeatureFlagName": {
+            "countries-1.0.0-federatedgraph": {
+                "engineConfig": {
+                    "defaultFlushInterval": "500",
+                    "datasourceConfigurations": [
+                        {
+                            "kind": "GRAPHQL",
+                            "rootNodes": [
+                                {
+                                    "typeName": "Query",
+                                    "fieldNames": [
+                                        "continents",
+                                        "continent",
+                                        "countries",
+                                        "country",
+                                        "languages",
+                                        "language"
+                                    ]
+                                }
+                            ],
+                            "childNodes": [
+                                {
+                                    "typeName": "Continent",
+                                    "fieldNames": [
+                                        "code",
+                                        "name",
+                                        "countries"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Country",
+                                    "fieldNames": [
+                                        "code",
+                                        "name",
+                                        "native",
+                                        "phone",
+                                        "continent",
+                                        "currency",
+                                        "languages",
+                                        "emoji",
+                                        "emojiU",
+                                        "states"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Language",
+                                    "fieldNames": [
+                                        "code",
+                                        "name",
+                                        "native",
+                                        "rtl"
+                                    ]
+                                },
+                                {
+                                    "typeName": "State",
+                                    "fieldNames": [
+                                        "code",
+                                        "name",
+                                        "country"
+                                    ]
+                                }
+                            ],
+                            "overrideFieldPathFromAlias": true,
+                            "customGraphql": {
+                                "fetch": {
+                                    "url": {
+                                        "staticVariableContent": "https://countries.trevorblades.com/graphql"
+                                    },
+                                    "method": "POST",
+                                    "body": {},
+                                    "baseUrl": {},
+                                    "path": {}
+                                },
+                                "subscription": {
+                                    "enabled": true,
+                                    "url": {
+                                        "staticVariableContent": "https://countries.trevorblades.com/graphql"
+                                    },
+                                    "protocol": "GRAPHQL_SUBSCRIPTION_PROTOCOL_WS",
+                                    "websocketSubprotocol": "GRAPHQL_WEBSOCKET_SUBPROTOCOL_AUTO"
+                                },
+                                "federation": {
+                                    "enabled": true,
+                                    "serviceSdl": "\"\"\"\"\"\"\ndirective @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"\"\"\"\n  continents: [Continent]\n  \"\"\"\"\"\"\n  continent(code: String): Continent\n  \"\"\"\"\"\"\n  countries: [Country]\n  \"\"\"\"\"\"\n  country(code: String): Country\n  \"\"\"\"\"\"\n  languages: [Language]\n  \"\"\"\"\"\"\n  language(code: String): Language\n}\n\n\"\"\"\"\"\"\ntype Continent {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  countries: [Country]\n}\n\n\"\"\"\"\"\"\ntype Country {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  phone: String\n  \"\"\"\"\"\"\n  continent: Continent\n  \"\"\"\"\"\"\n  currency: String\n  \"\"\"\"\"\"\n  languages: [Language]\n  \"\"\"\"\"\"\n  emoji: String\n  \"\"\"\"\"\"\n  emojiU: String\n  \"\"\"\"\"\"\n  states: [State]\n}\n\n\"\"\"\"\"\"\ntype Language {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  rtl: Int\n}\n\n\"\"\"\"\"\"\ntype State {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  country: Country\n}\n\n\"\"\"\"\"\"\nenum CacheControlScope {\n  \"\"\"\"\"\"\n  PUBLIC\n  \"\"\"\"\"\"\n  PRIVATE\n}\n\n\"\"\"The `Upload` scalar type represents a file upload.\"\"\"\nscalar Upload\n"
+                                },
+                                "upstreamSchema": {
+                                    "key": "ddab1edac7a647cc2ed7d7b1c17dd658dea9e10b"
+                                }
+                            },
+                            "requestTimeoutSeconds": "10",
+                            "id": "c944b5cd-0b58-4a72-a9ba-7e46715d164b"
+                        },
+                        {
+                            "kind": "GRAPHQL",
+                            "rootNodes": [
+                                {
+                                    "typeName": "Query",
+                                    "fieldNames": [
+                                        "character",
+                                        "characters",
+                                        "charactersByIds",
+                                        "episode",
+                                        "episodes",
+                                        "episodesByIds",
+                                        "location",
+                                        "locations",
+                                        "locationsByIds"
+                                    ]
+                                }
+                            ],
+                            "childNodes": [
+                                {
+                                    "typeName": "Character",
+                                    "fieldNames": [
+                                        "created",
+                                        "episode",
+                                        "gender",
+                                        "id",
+                                        "image",
+                                        "location",
+                                        "name",
+                                        "origin",
+                                        "species",
+                                        "status",
+                                        "type"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Characters",
+                                    "fieldNames": [
+                                        "info",
+                                        "results"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Episode",
+                                    "fieldNames": [
+                                        "air_date",
+                                        "characters",
+                                        "created",
+                                        "episode",
+                                        "id",
+                                        "name"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Episodes",
+                                    "fieldNames": [
+                                        "info",
+                                        "results"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Info",
+                                    "fieldNames": [
+                                        "count",
+                                        "next",
+                                        "pages",
+                                        "prev"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Location",
+                                    "fieldNames": [
+                                        "created",
+                                        "dimension",
+                                        "id",
+                                        "name",
+                                        "residents",
+                                        "type"
+                                    ]
+                                },
+                                {
+                                    "typeName": "Locations",
+                                    "fieldNames": [
+                                        "info",
+                                        "results"
+                                    ]
+                                }
+                            ],
+                            "overrideFieldPathFromAlias": true,
+                            "customGraphql": {
+                                "fetch": {
+                                    "url": {
+                                        "staticVariableContent": "https://rickandmortyapi.com/graphql"
+                                    },
+                                    "method": "POST",
+                                    "body": {},
+                                    "baseUrl": {},
+                                    "path": {}
+                                },
+                                "subscription": {
+                                    "enabled": true,
+                                    "url": {
+                                        "staticVariableContent": "https://rickandmortyapi.com/graphql"
+                                    },
+                                    "protocol": "GRAPHQL_SUBSCRIPTION_PROTOCOL_WS",
+                                    "websocketSubprotocol": "GRAPHQL_WEBSOCKET_SUBPROTOCOL_AUTO"
+                                },
+                                "federation": {
+                                    "enabled": true,
+                                    "serviceSdl": "\"\"\"\"\"\"\ndirective @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE\n\n\"\"\"\"\"\"\nenum CacheControlScope {\n  \"\"\"\"\"\"\n  PRIVATE\n\n  \"\"\"\"\"\"\n  PUBLIC\n}\n\n\"\"\"\"\"\"\ntype Character {\n  \"\"\"Time at which the character was created in the database.\"\"\"\n  created: String\n\n  \"\"\"Episodes in which this character appeared.\"\"\"\n  episode: [Episode]!\n\n  \"\"\"\n  The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').\n  \"\"\"\n  gender: String\n\n  \"\"\"The id of the character.\"\"\"\n  id: ID\n\n  \"\"\"\n  Link to the character's image.\n  All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.\n  \"\"\"\n  image: String\n\n  \"\"\"The character's last known location\"\"\"\n  location: Location\n\n  \"\"\"The name of the character.\"\"\"\n  name: String\n\n  \"\"\"The character's origin location\"\"\"\n  origin: Location\n\n  \"\"\"The species of the character.\"\"\"\n  species: String\n\n  \"\"\"The status of the character ('Alive', 'Dead' or 'unknown').\"\"\"\n  status: String\n\n  \"\"\"The type or subspecies of the character.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Characters {\n  \"\"\"\"\"\"\n  info: Info\n\n  \"\"\"\"\"\"\n  results: [Character]\n}\n\n\"\"\"\"\"\"\ntype Episode {\n  \"\"\"The air date of the episode.\"\"\"\n  air_date: String\n\n  \"\"\"List of characters who have been seen in the episode.\"\"\"\n  characters: [Character]!\n\n  \"\"\"Time at which the episode was created in the database.\"\"\"\n  created: String\n\n  \"\"\"The code of the episode.\"\"\"\n  episode: String\n\n  \"\"\"The id of the episode.\"\"\"\n  id: ID\n\n  \"\"\"The name of the episode.\"\"\"\n  name: String\n}\n\n\"\"\"\"\"\"\ntype Episodes {\n  \"\"\"\"\"\"\n  info: Info\n\n  \"\"\"\"\"\"\n  results: [Episode]\n}\n\n\"\"\"\"\"\"\ninput FilterCharacter {\n  \"\"\"\"\"\"\n  name: String\n\n  \"\"\"\"\"\"\n  status: String\n\n  \"\"\"\"\"\"\n  species: String\n\n  \"\"\"\"\"\"\n  type: String\n\n  \"\"\"\"\"\"\n  gender: String\n}\n\n\"\"\"\"\"\"\ninput FilterEpisode {\n  \"\"\"\"\"\"\n  name: String\n\n  \"\"\"\"\"\"\n  episode: String\n}\n\n\"\"\"\"\"\"\ninput FilterLocation {\n  \"\"\"\"\"\"\n  name: String\n\n  \"\"\"\"\"\"\n  type: String\n\n  \"\"\"\"\"\"\n  dimension: String\n}\n\n\"\"\"\"\"\"\ntype Info {\n  \"\"\"The length of the response.\"\"\"\n  count: Int\n\n  \"\"\"Number of the next page (if it exists)\"\"\"\n  next: Int\n\n  \"\"\"The amount of pages.\"\"\"\n  pages: Int\n\n  \"\"\"Number of the previous page (if it exists)\"\"\"\n  prev: Int\n}\n\n\"\"\"\"\"\"\ntype Location {\n  \"\"\"Time at which the location was created in the database.\"\"\"\n  created: String\n\n  \"\"\"The dimension in which the location is located.\"\"\"\n  dimension: String\n\n  \"\"\"The id of the location.\"\"\"\n  id: ID\n\n  \"\"\"The name of the location.\"\"\"\n  name: String\n\n  \"\"\"List of characters who have been last seen in the location.\"\"\"\n  residents: [Character]!\n\n  \"\"\"The type of the location.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Locations {\n  \"\"\"\"\"\"\n  info: Info\n\n  \"\"\"\"\"\"\n  results: [Location]\n}\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"Get a specific character by ID\"\"\"\n  character(id: ID!): Character\n\n  \"\"\"Get the list of all characters\"\"\"\n  characters(filter: FilterCharacter, page: Int): Characters\n\n  \"\"\"Get a list of characters selected by ids\"\"\"\n  charactersByIds(ids: [ID!]!): [Character]\n\n  \"\"\"Get a specific episode by ID\"\"\"\n  episode(id: ID!): Episode\n\n  \"\"\"Get the list of all episodes\"\"\"\n  episodes(filter: FilterEpisode, page: Int): Episodes\n\n  \"\"\"Get a list of episodes selected by ids\"\"\"\n  episodesByIds(ids: [ID!]!): [Episode]\n\n  \"\"\"Get a specific locations by ID\"\"\"\n  location(id: ID!): Location\n\n  \"\"\"Get the list of all locations\"\"\"\n  locations(filter: FilterLocation, page: Int): Locations\n\n  \"\"\"Get a list of locations selected by ids\"\"\"\n  locationsByIds(ids: [ID!]!): [Location]\n}\n\n\"\"\"The `Upload` scalar type represents a file upload.\"\"\"\nscalar Upload\n"
+                                },
+                                "upstreamSchema": {
+                                    "key": "9128383dfb53f7dc0d021be2dac2ea7021707545"
+                                }
+                            },
+                            "requestTimeoutSeconds": "10",
+                            "id": "78d9618c-d48d-4ec1-be5c-c0251121f9ee"
+                        }
+                    ],
+                    "fieldConfigurations": [
+                        {
+                            "typeName": "Query",
+                            "fieldName": "continent",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "code",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "country",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "code",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "language",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "code",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "character",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "id",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "characters",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "filter",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                },
+                                {
+                                    "name": "page",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "charactersByIds",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "ids",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "episode",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "id",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "episodes",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "filter",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                },
+                                {
+                                    "name": "page",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "episodesByIds",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "ids",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "location",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "id",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "locations",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "filter",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                },
+                                {
+                                    "name": "page",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        },
+                        {
+                            "typeName": "Query",
+                            "fieldName": "locationsByIds",
+                            "argumentsConfiguration": [
+                                {
+                                    "name": "ids",
+                                    "sourceType": "FIELD_ARGUMENT"
+                                }
+                            ]
+                        }
+                    ],
+                    "graphqlSchema": "schema {\n  query: Query\n}\n\ndirective @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"\"\"\"\n  continents: [Continent]\n  \"\"\"\"\"\"\n  continent(code: String): Continent\n  \"\"\"\"\"\"\n  countries: [Country]\n  \"\"\"\"\"\"\n  country(code: String): Country\n  \"\"\"\"\"\"\n  languages: [Language]\n  \"\"\"\"\"\"\n  language(code: String): Language\n  \"\"\"Get a specific character by ID\"\"\"\n  character(id: ID!): Character\n  \"\"\"Get the list of all characters\"\"\"\n  characters(filter: FilterCharacter, page: Int): Characters\n  \"\"\"Get a list of characters selected by ids\"\"\"\n  charactersByIds(ids: [ID!]!): [Character]\n  \"\"\"Get a specific episode by ID\"\"\"\n  episode(id: ID!): Episode\n  \"\"\"Get the list of all episodes\"\"\"\n  episodes(filter: FilterEpisode, page: Int): Episodes\n  \"\"\"Get a list of episodes selected by ids\"\"\"\n  episodesByIds(ids: [ID!]!): [Episode]\n  \"\"\"Get a specific locations by ID\"\"\"\n  location(id: ID!): Location\n  \"\"\"Get the list of all locations\"\"\"\n  locations(filter: FilterLocation, page: Int): Locations\n  \"\"\"Get a list of locations selected by ids\"\"\"\n  locationsByIds(ids: [ID!]!): [Location]\n}\n\n\"\"\"\"\"\"\ntype Continent {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  countries: [Country]\n}\n\n\"\"\"\"\"\"\ntype Country {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  phone: String\n  \"\"\"\"\"\"\n  continent: Continent\n  \"\"\"\"\"\"\n  currency: String\n  \"\"\"\"\"\"\n  languages: [Language]\n  \"\"\"\"\"\"\n  emoji: String\n  \"\"\"\"\"\"\n  emojiU: String\n  \"\"\"\"\"\"\n  states: [State]\n}\n\n\"\"\"\"\"\"\ntype Language {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  rtl: Int\n}\n\n\"\"\"\"\"\"\ntype State {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  country: Country\n}\n\n\"\"\"\"\"\"\nenum CacheControlScope {\n  \"\"\"\"\"\"\n  PUBLIC\n  \"\"\"\"\"\"\n  PRIVATE\n}\n\n\"\"\"The `Upload` scalar type represents a file upload.\"\"\"\nscalar Upload\n\n\"\"\"\"\"\"\ntype Character {\n  \"\"\"Time at which the character was created in the database.\"\"\"\n  created: String\n  \"\"\"Episodes in which this character appeared.\"\"\"\n  episode: [Episode]!\n  \"\"\"\n  The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').\n  \"\"\"\n  gender: String\n  \"\"\"The id of the character.\"\"\"\n  id: ID\n  \"\"\"\n  Link to the character's image.\n  All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.\n  \"\"\"\n  image: String\n  \"\"\"The character's last known location\"\"\"\n  location: Location\n  \"\"\"The name of the character.\"\"\"\n  name: String\n  \"\"\"The character's origin location\"\"\"\n  origin: Location\n  \"\"\"The species of the character.\"\"\"\n  species: String\n  \"\"\"The status of the character ('Alive', 'Dead' or 'unknown').\"\"\"\n  status: String\n  \"\"\"The type or subspecies of the character.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Characters {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Character]\n}\n\n\"\"\"\"\"\"\ntype Episode {\n  \"\"\"The air date of the episode.\"\"\"\n  air_date: String\n  \"\"\"List of characters who have been seen in the episode.\"\"\"\n  characters: [Character]!\n  \"\"\"Time at which the episode was created in the database.\"\"\"\n  created: String\n  \"\"\"The code of the episode.\"\"\"\n  episode: String\n  \"\"\"The id of the episode.\"\"\"\n  id: ID\n  \"\"\"The name of the episode.\"\"\"\n  name: String\n}\n\n\"\"\"\"\"\"\ntype Episodes {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Episode]\n}\n\n\"\"\"\"\"\"\ninput FilterCharacter {\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  status: String\n  \"\"\"\"\"\"\n  species: String\n  \"\"\"\"\"\"\n  type: String\n  \"\"\"\"\"\"\n  gender: String\n}\n\n\"\"\"\"\"\"\ninput FilterEpisode {\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  episode: String\n}\n\n\"\"\"\"\"\"\ninput FilterLocation {\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  type: String\n  \"\"\"\"\"\"\n  dimension: String\n}\n\n\"\"\"\"\"\"\ntype Info {\n  \"\"\"The length of the response.\"\"\"\n  count: Int\n  \"\"\"Number of the next page (if it exists)\"\"\"\n  next: Int\n  \"\"\"The amount of pages.\"\"\"\n  pages: Int\n  \"\"\"Number of the previous page (if it exists)\"\"\"\n  prev: Int\n}\n\n\"\"\"\"\"\"\ntype Location {\n  \"\"\"Time at which the location was created in the database.\"\"\"\n  created: String\n  \"\"\"The dimension in which the location is located.\"\"\"\n  dimension: String\n  \"\"\"The id of the location.\"\"\"\n  id: ID\n  \"\"\"The name of the location.\"\"\"\n  name: String\n  \"\"\"List of characters who have been last seen in the location.\"\"\"\n  residents: [Character]!\n  \"\"\"The type of the location.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Locations {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Location]\n}",
+                    "stringStorage": {
+                        "ddab1edac7a647cc2ed7d7b1c17dd658dea9e10b": "schema {\n  query: Query\n}\n\n\"\"\"\"\"\"\ndirective @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | INTERFACE | OBJECT\n\ndirective @extends on INTERFACE | OBJECT\n\ndirective @external on FIELD_DEFINITION | OBJECT\n\ndirective @key(fields: openfed__FieldSet!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT\n\ndirective @provides(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @requires(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION\n\n\"\"\"\"\"\"\nenum CacheControlScope {\n  \"\"\"\"\"\"\n  PRIVATE\n  \"\"\"\"\"\"\n  PUBLIC\n}\n\n\"\"\"\"\"\"\ntype Continent {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  countries: [Country]\n  \"\"\"\"\"\"\n  name: String\n}\n\n\"\"\"\"\"\"\ntype Country {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  continent: Continent\n  \"\"\"\"\"\"\n  currency: String\n  \"\"\"\"\"\"\n  emoji: String\n  \"\"\"\"\"\"\n  emojiU: String\n  \"\"\"\"\"\"\n  languages: [Language]\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  phone: String\n  \"\"\"\"\"\"\n  states: [State]\n}\n\n\"\"\"\"\"\"\ntype Language {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  native: String\n  \"\"\"\"\"\"\n  rtl: Int\n}\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"\"\"\"\n  continent(code: String): Continent\n  \"\"\"\"\"\"\n  continents: [Continent]\n  \"\"\"\"\"\"\n  countries: [Country]\n  \"\"\"\"\"\"\n  country(code: String): Country\n  \"\"\"\"\"\"\n  language(code: String): Language\n  \"\"\"\"\"\"\n  languages: [Language]\n}\n\n\"\"\"\"\"\"\ntype State {\n  \"\"\"\"\"\"\n  code: String\n  \"\"\"\"\"\"\n  country: Country\n  \"\"\"\"\"\"\n  name: String\n}\n\n\"\"\"The `Upload` scalar type represents a file upload.\"\"\"\nscalar Upload\n\nscalar openfed__FieldSet",
+                        "9128383dfb53f7dc0d021be2dac2ea7021707545": "schema {\n  query: Query\n}\n\n\"\"\"\"\"\"\ndirective @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | INTERFACE | OBJECT\n\ndirective @extends on INTERFACE | OBJECT\n\ndirective @external on FIELD_DEFINITION | OBJECT\n\ndirective @key(fields: openfed__FieldSet!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT\n\ndirective @provides(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @requires(fields: openfed__FieldSet!) on FIELD_DEFINITION\n\ndirective @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION\n\n\"\"\"\"\"\"\nenum CacheControlScope {\n  \"\"\"\"\"\"\n  PRIVATE\n  \"\"\"\"\"\"\n  PUBLIC\n}\n\n\"\"\"\"\"\"\ntype Character {\n  \"\"\"Time at which the character was created in the database.\"\"\"\n  created: String\n  \"\"\"Episodes in which this character appeared.\"\"\"\n  episode: [Episode]!\n  \"\"\"\n  The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').\n  \"\"\"\n  gender: String\n  \"\"\"The id of the character.\"\"\"\n  id: ID\n  \"\"\"\n  Link to the character's image.\n  All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.\n  \"\"\"\n  image: String\n  \"\"\"The character's last known location\"\"\"\n  location: Location\n  \"\"\"The name of the character.\"\"\"\n  name: String\n  \"\"\"The character's origin location\"\"\"\n  origin: Location\n  \"\"\"The species of the character.\"\"\"\n  species: String\n  \"\"\"The status of the character ('Alive', 'Dead' or 'unknown').\"\"\"\n  status: String\n  \"\"\"The type or subspecies of the character.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Characters {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Character]\n}\n\n\"\"\"\"\"\"\ntype Episode {\n  \"\"\"The air date of the episode.\"\"\"\n  air_date: String\n  \"\"\"List of characters who have been seen in the episode.\"\"\"\n  characters: [Character]!\n  \"\"\"Time at which the episode was created in the database.\"\"\"\n  created: String\n  \"\"\"The code of the episode.\"\"\"\n  episode: String\n  \"\"\"The id of the episode.\"\"\"\n  id: ID\n  \"\"\"The name of the episode.\"\"\"\n  name: String\n}\n\n\"\"\"\"\"\"\ntype Episodes {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Episode]\n}\n\n\"\"\"\"\"\"\ninput FilterCharacter {\n  \"\"\"\"\"\"\n  gender: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  species: String\n  \"\"\"\"\"\"\n  status: String\n  \"\"\"\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ninput FilterEpisode {\n  \"\"\"\"\"\"\n  episode: String\n  \"\"\"\"\"\"\n  name: String\n}\n\n\"\"\"\"\"\"\ninput FilterLocation {\n  \"\"\"\"\"\"\n  dimension: String\n  \"\"\"\"\"\"\n  name: String\n  \"\"\"\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Info {\n  \"\"\"The length of the response.\"\"\"\n  count: Int\n  \"\"\"Number of the next page (if it exists)\"\"\"\n  next: Int\n  \"\"\"The amount of pages.\"\"\"\n  pages: Int\n  \"\"\"Number of the previous page (if it exists)\"\"\"\n  prev: Int\n}\n\n\"\"\"\"\"\"\ntype Location {\n  \"\"\"Time at which the location was created in the database.\"\"\"\n  created: String\n  \"\"\"The dimension in which the location is located.\"\"\"\n  dimension: String\n  \"\"\"The id of the location.\"\"\"\n  id: ID\n  \"\"\"The name of the location.\"\"\"\n  name: String\n  \"\"\"List of characters who have been last seen in the location.\"\"\"\n  residents: [Character]!\n  \"\"\"The type of the location.\"\"\"\n  type: String\n}\n\n\"\"\"\"\"\"\ntype Locations {\n  \"\"\"\"\"\"\n  info: Info\n  \"\"\"\"\"\"\n  results: [Location]\n}\n\n\"\"\"\"\"\"\ntype Query {\n  \"\"\"Get a specific character by ID\"\"\"\n  character(id: ID!): Character\n  \"\"\"Get the list of all characters\"\"\"\n  characters(filter: FilterCharacter, page: Int): Characters\n  \"\"\"Get a list of characters selected by ids\"\"\"\n  charactersByIds(ids: [ID!]!): [Character]\n  \"\"\"Get a specific episode by ID\"\"\"\n  episode(id: ID!): Episode\n  \"\"\"Get the list of all episodes\"\"\"\n  episodes(filter: FilterEpisode, page: Int): Episodes\n  \"\"\"Get a list of episodes selected by ids\"\"\"\n  episodesByIds(ids: [ID!]!): [Episode]\n  \"\"\"Get a specific locations by ID\"\"\"\n  location(id: ID!): Location\n  \"\"\"Get the list of all locations\"\"\"\n  locations(filter: FilterLocation, page: Int): Locations\n  \"\"\"Get a list of locations selected by ids\"\"\"\n  locationsByIds(ids: [ID!]!): [Location]\n}\n\n\"\"\"The `Upload` scalar type represents a file upload.\"\"\"\nscalar Upload\n\nscalar openfed__FieldSet"
+                    }
+                },
+                "version": "356781d4-4549-4eff-8e20-c733c5eaf0f1",
+                "subgraphs": [
+                    {
+                        "id": "c944b5cd-0b58-4a72-a9ba-7e46715d164b",
+                        "name": "countries",
+                        "routingUrl": "https://countries.trevorblades.com/graphql"
+                    },
+                    {
+                        "id": "78d9618c-d48d-4ec1-be5c-c0251121f9ee",
+                        "name": "featgraph",
+                        "routingUrl": "https://rickandmortyapi.com/graphql"
+                    }
+                ]
+            }
+        }
+    },
+    "compatibilityVersion": "1:{{$COMPOSITION__VERSION}}"
+}
